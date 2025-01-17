@@ -2,7 +2,9 @@
 using System.Text.RegularExpressions;
 using DataForge;
 using LogicForge;
+using LogicForge.Interfaces;
 using Microsoft.Data.SqlClient;
+using TestingForge.Interfaces;
 
 
 namespace TestingForge
@@ -11,31 +13,16 @@ namespace TestingForge
     {
         public static void Main(string[] args)
         {
-            string connectionString = "Server=HP_PROBOOK\\SQLEXPRESS; Initial Catalog=Forge; Integrated Security=SSPI; TrustServerCertificate=True";
+            IDataCapture capture = new DataCapture();
+            IDisplay display = new Display();
+            IPopulateDatabase database = new Database();
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    Console.WriteLine("Connection successful!");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error: " + ex.Message);
-                }
-            }
+            List<Team> teams = new();
+            capture.GetTeams(teams);
+            capture.GetScores(teams);
+            display.DisplayLeaderboard(teams);
+            database.Populate(teams);
 
-            Teams teams = new Teams();
-            DataCapture capture = new DataCapture();
-            Display display = new Display();
-            Database database = new Database();
-
-            capture.GetTeamNames();
-            capture.GetScores();
-            display.DisplayLeaderboard();
-
-            //database.PopulateDatabase();
             Console.ReadLine();
         }
     }

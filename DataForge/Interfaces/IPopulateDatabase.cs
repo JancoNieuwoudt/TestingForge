@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataForge
+namespace DataForge.Interfaces
 {
-    public class Teams
+    public interface IPopulateDatabase
     {
-        public List<Team> teams = new List<Team>();
+        void Populate(List<Team> teams);           
     }
 }
