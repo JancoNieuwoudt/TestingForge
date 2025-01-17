@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataForge.Interfaces
 {
-    public interface IPopulateDatabase
+    public interface IDataOperations
     {
         void Populate(List<Team> teams);           
     }

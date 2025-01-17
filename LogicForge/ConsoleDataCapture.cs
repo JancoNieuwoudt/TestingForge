@@ -4,7 +4,7 @@ using Microsoft.Identity.Client;
 
 namespace LogicForge
 {
-    public class DataCapture : IDataCapture
+    public class ConsoleDataCapture : IDataCapture
     {
         int noOfTeams = 4;
         int noOfMatches = 3;
@@ -35,7 +35,7 @@ namespace LogicForge
             {
                 Console.Write($"Team {i + 1}: ");
                 string teamName = Console.ReadLine();
-                teams.Add(new Team(teamName));
+                teams.Add(new Team { Name = teamName});
             }
             return teams;
         }

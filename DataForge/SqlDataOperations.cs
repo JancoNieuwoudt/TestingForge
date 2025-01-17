@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace TestingForge
 {
-    public class Database : IPopulateDatabase
+    public class SqlDataOperations : IDataOperations
     {
 
         public void Populate(List<Team> teams)
@@ -38,7 +38,7 @@ namespace TestingForge
                 foreach (Team team in teams)
                 {
                     string query = @"INSERT INTO dbo.Teams (TeamName, CategoryID)
-                                     VALUE (@teamName, 1)";
+                                     VALUES (@teamName, 1)";
 
                     SqlCommand cmd = new SqlCommand(query, sqlConnection);
                     cmd.Parameters.AddWithValue("@teamName", team.Name);

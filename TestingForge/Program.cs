@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using DataForge;
+using DataForge.Interfaces;
 using LogicForge;
 using LogicForge.Interfaces;
 using Microsoft.Data.SqlClient;
-using TestingForge.Interfaces;
 
 
 namespace TestingForge
@@ -13,9 +13,9 @@ namespace TestingForge
     {
         public static void Main(string[] args)
         {
-            IDataCapture capture = new DataCapture();
+            IDataCapture capture = new ConsoleDataCapture();
             IDisplay display = new Display();
-            IPopulateDatabase database = new Database();
+            IDataOperations database = new SqlDataOperations();
 
             List<Team> teams = new();
             capture.GetTeams(teams);
