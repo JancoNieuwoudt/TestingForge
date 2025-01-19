@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataForge.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace DataForge.Interfaces
 {
     public interface IDataOperations
     {
-        void Populate(List<Team> teams);           
+        void SqlInsertQueries(List<Team> teams);           
     }
 }

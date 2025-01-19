@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using static System.Formats.Asn1.AsnWriter;
 
-namespace DataForge
+namespace DataForge.Models
 {
     public class Team
     {

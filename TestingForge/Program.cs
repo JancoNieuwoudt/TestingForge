@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using DataForge;
 using DataForge.Interfaces;
+using DataForge.Models;
 using LogicForge;
-using LogicForge.Interfaces;
 using Microsoft.Data.SqlClient;
 
 
@@ -13,17 +12,14 @@ namespace TestingForge
     {
         public static void Main(string[] args)
         {
-            IDataCapture capture = new ConsoleDataCapture();
-            IDisplay display = new Display();
+            List<Team> teams = new();
+
+            ConsoleUserInterface capture = new ConsoleUserInterface(teams);
             IDataOperations database = new SqlDataOperations();
 
-            List<Team> teams = new();
-            capture.GetTeams(teams);
-            capture.GetScores(teams);
-            display.DisplayLeaderboard(teams);
-            database.Populate(teams);
+            database.SqlInsertQueries(teams);
 
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

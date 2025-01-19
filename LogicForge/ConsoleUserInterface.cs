@@ -1,29 +1,23 @@
-﻿using DataForge;
-using LogicForge.Interfaces;
+﻿using DataForge.Models;
 using Microsoft.Identity.Client;
 
 namespace LogicForge
 {
-    public class ConsoleDataCapture : IDataCapture
+    public class ConsoleUserInterface
     {
         int noOfTeams = 4;
         int noOfMatches = 3;
 
-        public List<Team> GetTeams(List<Team> teams) 
+        public ConsoleUserInterface(List<Team> teams)
         {
             GetTeamNames(teams);
-            return teams;
-        }
-
-        public List<Team> GetScores(List<Team> teams)
-        {
             GetTeamScores(teams);
-            return teams;
+            DisplayLeaderboard(teams);
         }
 
         #region
         /// <summary>
-        /// Gets the Team names and their scores
+        /// Gets the Team names and their scores and display leaderboard
         /// </summary>
         /// <param name="teams"></param>
         /// <returns></returns>
@@ -56,6 +50,23 @@ namespace LogicForge
                 }
             }
         }
+        private void DisplayLeaderboard(List<Team> teams)
+        {
+            Console.WriteLine("Final Scores:");
+            Console.WriteLine("Team Name".PadRight(20) + "Total Score");
+            Console.WriteLine("-".PadRight(35, '-'));
+
+            foreach (Team team in teams)
+            {
+                Console.WriteLine($"{team.Name.PadRight(20)}{GetTotalScore(team.Points)}");
+            }
+        }
+
+        private double GetTotalScore(double[] points)
+        {
+            return points.Sum();
+        }
+
         #endregion
     }
 }
